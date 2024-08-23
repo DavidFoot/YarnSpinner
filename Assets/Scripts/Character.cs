@@ -31,6 +31,7 @@ public class Character : MonoBehaviour {
     }
 
     // moves character to location {location}>{markerName} in the scene
+    [YarnCommand("place")]
     public void Move(Location location, string markerName) {
         Transform destination = location.GetMarkerWithName(markerName);
         if (destination != null) {
@@ -40,12 +41,13 @@ public class Character : MonoBehaviour {
         }
     }
 
+    [YarnCommand("pose")]
     // tells the animator to jump to state {poseName} 
     public void SetPose(string poseName) {
         animator.Play("Base Layer." + poseName, 0);
         Debug.Log($"{name} adopting {poseName} pose.");
     }
-
+    [YarnCommand("expression")]
     // sets character expression texture to {expressionName} texture
     public void SetExpression(string expressionName){
         // find the expression with the same name as we are looking for
